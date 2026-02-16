@@ -1,0 +1,47 @@
+name: Regenerate Lua client
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekly (Mondays 06:00 UTC)
+    - cron: "0 6 * * 1"
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch OpenAPI spec
+        run: npm run fetch
+
+      - name: Generate Lua client
+        run: npm run generate
+
+      - name: Create pull request if changed
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore: regenerate lua client"
+          title: "chore: regenerate lua client"
+          body: |
+            Automated update:
+            - Re-fetched `openapi.json`
+            - Re-generated `lib/stoat-api.lua`
+          branch: "bot/regenerate-lua-client"
+          delete-branch: true
+          labels: automated
