@@ -11,6 +11,6 @@
     "generate": "openapi-2-lua --spec openapi.json --out ./stoat-api.lua --name StoatAPI"
   },
   "devDependencies": {
-    "openapi-2-lua": "^0.0.2"
+    "openapi-2-lua": "^0.0.3"
   }
 }
