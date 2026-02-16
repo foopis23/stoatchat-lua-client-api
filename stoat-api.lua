@@ -14,7 +14,12 @@ function StoatAPI:new(config)
     instance.users["@me"] = {}
     instance.users["@me"].username = {}
 
-    instance.users["@me"].username.patch = function(options)
+    instance.users["@me"].username.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users["@me"].username then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/users/@me/username",
@@ -27,7 +32,12 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.users["@me"].get = function(options)
+    instance.users["@me"].get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users["@me"] then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/users/@me",
@@ -41,7 +51,13 @@ function StoatAPI:new(config)
     end
     instance.users.flags = {}
 
-    instance.users.flags.get = function(target, options)
+    instance.users.flags.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users.flags then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/users/" .. target .. "/flags",
@@ -55,7 +71,13 @@ function StoatAPI:new(config)
     end
     instance.users.default_avatar = {}
 
-    instance.users.default_avatar.get = function(target, options)
+    instance.users.default_avatar.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users.default_avatar then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/users/" .. target .. "/default_avatar",
@@ -69,7 +91,13 @@ function StoatAPI:new(config)
     end
     instance.users.profile = {}
 
-    instance.users.profile.get = function(target, options)
+    instance.users.profile.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users.profile then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/users/" .. target .. "/profile",
@@ -83,7 +111,12 @@ function StoatAPI:new(config)
     end
     instance.users.dms = {}
 
-    instance.users.dms.get = function(options)
+    instance.users.dms.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users.dms then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/users/dms",
@@ -97,7 +130,13 @@ function StoatAPI:new(config)
     end
     instance.users.dm = {}
 
-    instance.users.dm.get = function(target, options)
+    instance.users.dm.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users.dm then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/users/" .. target .. "/dm",
@@ -111,7 +150,13 @@ function StoatAPI:new(config)
     end
     instance.users.mutual = {}
 
-    instance.users.mutual.get = function(target, options)
+    instance.users.mutual.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users.mutual then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/users/" .. target .. "/mutual",
@@ -125,7 +170,13 @@ function StoatAPI:new(config)
     end
     instance.users.friend = {}
 
-    instance.users.friend.put = function(target, options)
+    instance.users.friend.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users.friend then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/users/" .. target .. "/friend",
@@ -138,7 +189,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.users.friend.delete = function(target, options)
+    instance.users.friend.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users.friend then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/users/" .. target .. "/friend",
@@ -151,7 +208,12 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.users.friend.post = function(options)
+    instance.users.friend.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users.friend then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/users/friend",
@@ -165,7 +227,13 @@ function StoatAPI:new(config)
     end
     instance.users.block = {}
 
-    instance.users.block.put = function(target, options)
+    instance.users.block.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users.block then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/users/" .. target .. "/block",
@@ -178,7 +246,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.users.block.delete = function(target, options)
+    instance.users.block.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users.block then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/users/" .. target .. "/block",
@@ -191,7 +265,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.users.get = function(target, options)
+    instance.users.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/users/" .. target .. "",
@@ -204,7 +284,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.users.patch = function(target, options)
+    instance.users.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.users then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/users/" .. target .. "",
@@ -219,7 +305,12 @@ function StoatAPI:new(config)
     instance.bots = {}
     instance.bots.create = {}
 
-    instance.bots.create.post = function(options)
+    instance.bots.create.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.bots.create then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/bots/create",
@@ -233,7 +324,13 @@ function StoatAPI:new(config)
     end
     instance.bots.invite = {}
 
-    instance.bots.invite.get = function(target, options)
+    instance.bots.invite.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.bots.invite then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/bots/" .. target .. "/invite",
@@ -246,7 +343,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.bots.invite.post = function(target, options)
+    instance.bots.invite.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.bots.invite then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/bots/" .. target .. "/invite",
@@ -260,7 +363,12 @@ function StoatAPI:new(config)
     end
     instance.bots["@me"] = {}
 
-    instance.bots["@me"].get = function(options)
+    instance.bots["@me"].get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.bots["@me"] then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/bots/@me",
@@ -273,7 +381,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.bots.get = function(bot, options)
+    instance.bots.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.bots then
+        table.remove(__args, 1)
+      end
+      local bot = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/bots/" .. bot .. "",
@@ -286,7 +400,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.bots.delete = function(target, options)
+    instance.bots.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.bots then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/bots/" .. target .. "",
@@ -299,7 +419,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.bots.patch = function(target, options)
+    instance.bots.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.bots then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/bots/" .. target .. "",
@@ -314,7 +440,14 @@ function StoatAPI:new(config)
     instance.channels = {}
     instance.channels.ack = {}
 
-    instance.channels.ack.put = function(target, message, options)
+    instance.channels.ack.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.ack then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local message = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/ack/" .. message .. "",
@@ -328,7 +461,13 @@ function StoatAPI:new(config)
     end
     instance.channels.members = {}
 
-    instance.channels.members.get = function(target, options)
+    instance.channels.members.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.members then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/members",
@@ -342,7 +481,13 @@ function StoatAPI:new(config)
     end
     instance.channels.invites = {}
 
-    instance.channels.invites.post = function(target, options)
+    instance.channels.invites.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.invites then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/invites",
@@ -357,7 +502,14 @@ function StoatAPI:new(config)
     instance.channels.messages = {}
     instance.channels.messages.pin = {}
 
-    instance.channels.messages.pin.post = function(target, msg, options)
+    instance.channels.messages.pin.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.messages.pin then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local msg = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "/pin",
@@ -370,7 +522,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.channels.messages.pin.delete = function(target, msg, options)
+    instance.channels.messages.pin.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.messages.pin then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local msg = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "/pin",
@@ -384,7 +543,13 @@ function StoatAPI:new(config)
     end
     instance.channels.messages.bulk = {}
 
-    instance.channels.messages.bulk.delete = function(target, options)
+    instance.channels.messages.bulk.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.messages.bulk then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/messages/bulk",
@@ -398,7 +563,15 @@ function StoatAPI:new(config)
     end
     instance.channels.messages.reactions = {}
 
-    instance.channels.messages.reactions.put = function(target, msg, emoji, options)
+    instance.channels.messages.reactions.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.messages.reactions then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local msg = __args[2]
+      local emoji = __args[3]
+      local options = __args[4]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "/reactions/" .. emoji .. "",
@@ -411,7 +584,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.channels.messages.reactions.delete = function(target, msg, options)
+    instance.channels.messages.reactions.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.messages.reactions then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local msg = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "/reactions",
@@ -424,7 +604,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.channels.messages.get = function(target, msg, options)
+    instance.channels.messages.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.messages then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local msg = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "",
@@ -437,7 +624,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.channels.messages.post = function(target, options)
+    instance.channels.messages.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.messages then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/messages",
@@ -450,7 +643,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.channels.messages.delete = function(target, msg, options)
+    instance.channels.messages.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.messages then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local msg = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "",
@@ -463,7 +663,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.channels.messages.patch = function(target, msg, options)
+    instance.channels.messages.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.messages then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local msg = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "",
@@ -477,7 +684,13 @@ function StoatAPI:new(config)
     end
     instance.channels.search = {}
 
-    instance.channels.search.post = function(target, options)
+    instance.channels.search.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.search then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/search",
@@ -491,7 +704,12 @@ function StoatAPI:new(config)
     end
     instance.channels.create = {}
 
-    instance.channels.create.post = function(options)
+    instance.channels.create.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.create then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/channels/create",
@@ -505,7 +723,14 @@ function StoatAPI:new(config)
     end
     instance.channels.recipients = {}
 
-    instance.channels.recipients.put = function(group_id, member_id, options)
+    instance.channels.recipients.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.recipients then
+        table.remove(__args, 1)
+      end
+      local group_id = __args[1]
+      local member_id = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. group_id .. "/recipients/" .. member_id .. "",
@@ -518,7 +743,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.channels.recipients.delete = function(target, member, options)
+    instance.channels.recipients.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.recipients then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local member = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/recipients/" .. member .. "",
@@ -532,7 +764,13 @@ function StoatAPI:new(config)
     end
     instance.channels.join_call = {}
 
-    instance.channels.join_call.post = function(target, options)
+    instance.channels.join_call.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.join_call then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/join_call",
@@ -546,7 +784,14 @@ function StoatAPI:new(config)
     end
     instance.channels.end_ring = {}
 
-    instance.channels.end_ring.put = function(target, target_user, options)
+    instance.channels.end_ring.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.end_ring then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local target_user = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/end_ring/" .. target_user .. "",
@@ -561,7 +806,13 @@ function StoatAPI:new(config)
     instance.channels.permissions = {}
     instance.channels.permissions.default = {}
 
-    instance.channels.permissions.default.put = function(target, options)
+    instance.channels.permissions.default.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.permissions.default then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/permissions/default",
@@ -574,7 +825,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.channels.permissions.put = function(target, role_id, options)
+    instance.channels.permissions.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.permissions then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local role_id = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/permissions/" .. role_id .. "",
@@ -588,7 +846,13 @@ function StoatAPI:new(config)
     end
     instance.channels.webhooks = {}
 
-    instance.channels.webhooks.post = function(target, options)
+    instance.channels.webhooks.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.webhooks then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "/webhooks",
@@ -601,7 +865,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.channels.webhooks.get = function(channel_id, options)
+    instance.channels.webhooks.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.webhooks then
+        table.remove(__args, 1)
+      end
+      local channel_id = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. channel_id .. "/webhooks",
@@ -614,7 +884,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.channels.get = function(target, options)
+    instance.channels.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "",
@@ -627,7 +903,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.channels.delete = function(target, options)
+    instance.channels.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "",
@@ -640,7 +922,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.channels.patch = function(target, options)
+    instance.channels.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/channels/" .. target .. "",
@@ -655,7 +943,12 @@ function StoatAPI:new(config)
     instance.servers = {}
     instance.servers.create = {}
 
-    instance.servers.create.post = function(options)
+    instance.servers.create.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.create then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/servers/create",
@@ -669,7 +962,13 @@ function StoatAPI:new(config)
     end
     instance.servers.ack = {}
 
-    instance.servers.ack.put = function(target, options)
+    instance.servers.ack.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.ack then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/ack",
@@ -683,7 +982,13 @@ function StoatAPI:new(config)
     end
     instance.servers.channels = {}
 
-    instance.servers.channels.post = function(server, options)
+    instance.servers.channels.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.channels then
+        table.remove(__args, 1)
+      end
+      local server = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. server .. "/channels",
@@ -697,7 +1002,14 @@ function StoatAPI:new(config)
     end
     instance.servers.members = {}
 
-    instance.servers.members.get = function(target, member, options)
+    instance.servers.members.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.members then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local member = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/members/" .. member .. "",
@@ -710,7 +1022,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.servers.members.delete = function(target, member, options)
+    instance.servers.members.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.members then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local member = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/members/" .. member .. "",
@@ -723,7 +1042,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.servers.members.patch = function(server, member, options)
+    instance.servers.members.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.members then
+        table.remove(__args, 1)
+      end
+      local server = __args[1]
+      local member = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. server .. "/members/" .. member .. "",
@@ -737,7 +1063,13 @@ function StoatAPI:new(config)
     end
     instance.servers.members_experimental_query = {}
 
-    instance.servers.members_experimental_query.get = function(target, options)
+    instance.servers.members_experimental_query.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.members_experimental_query then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/members_experimental_query",
@@ -751,7 +1083,14 @@ function StoatAPI:new(config)
     end
     instance.servers.bans = {}
 
-    instance.servers.bans.put = function(server, target, options)
+    instance.servers.bans.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.bans then
+        table.remove(__args, 1)
+      end
+      local server = __args[1]
+      local target = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. server .. "/bans/" .. target .. "",
@@ -764,7 +1103,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.servers.bans.delete = function(server, target, options)
+    instance.servers.bans.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.bans then
+        table.remove(__args, 1)
+      end
+      local server = __args[1]
+      local target = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. server .. "/bans/" .. target .. "",
@@ -777,7 +1123,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.servers.bans.get = function(target, options)
+    instance.servers.bans.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.bans then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/bans",
@@ -791,7 +1143,13 @@ function StoatAPI:new(config)
     end
     instance.servers.invites = {}
 
-    instance.servers.invites.get = function(target, options)
+    instance.servers.invites.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.invites then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/invites",
@@ -806,7 +1164,13 @@ function StoatAPI:new(config)
     instance.servers.roles = {}
     instance.servers.roles.ranks = {}
 
-    instance.servers.roles.ranks.patch = function(target, options)
+    instance.servers.roles.ranks.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.roles.ranks then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/roles/ranks",
@@ -819,7 +1183,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.servers.roles.post = function(target, options)
+    instance.servers.roles.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.roles then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/roles",
@@ -832,7 +1202,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.servers.roles.get = function(target, role_id, options)
+    instance.servers.roles.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.roles then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local role_id = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/roles/" .. role_id .. "",
@@ -845,7 +1222,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.servers.roles.delete = function(target, role_id, options)
+    instance.servers.roles.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.roles then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local role_id = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/roles/" .. role_id .. "",
@@ -858,7 +1242,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.servers.roles.patch = function(target, role_id, options)
+    instance.servers.roles.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.roles then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local role_id = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/roles/" .. role_id .. "",
@@ -873,7 +1264,13 @@ function StoatAPI:new(config)
     instance.servers.permissions = {}
     instance.servers.permissions.default = {}
 
-    instance.servers.permissions.default.put = function(target, options)
+    instance.servers.permissions.default.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.permissions.default then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/permissions/default",
@@ -886,7 +1283,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.servers.permissions.put = function(target, role_id, options)
+    instance.servers.permissions.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.permissions then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local role_id = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/permissions/" .. role_id .. "",
@@ -900,7 +1304,13 @@ function StoatAPI:new(config)
     end
     instance.servers.emojis = {}
 
-    instance.servers.emojis.get = function(target, options)
+    instance.servers.emojis.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.emojis then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "/emojis",
@@ -913,7 +1323,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.servers.get = function(target, options)
+    instance.servers.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "",
@@ -926,7 +1342,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.servers.delete = function(target, options)
+    instance.servers.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "",
@@ -939,7 +1361,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.servers.patch = function(target, options)
+    instance.servers.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/servers/" .. target .. "",
@@ -953,7 +1381,13 @@ function StoatAPI:new(config)
     end
     instance.invites = {}
 
-    instance.invites.get = function(target, options)
+    instance.invites.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.invites then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/invites/" .. target .. "",
@@ -966,7 +1400,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.invites.post = function(target, options)
+    instance.invites.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.invites then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/invites/" .. target .. "",
@@ -979,7 +1419,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.invites.delete = function(target, options)
+    instance.invites.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.invites then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/invites/" .. target .. "",
@@ -994,7 +1440,13 @@ function StoatAPI:new(config)
     instance.custom = {}
     instance.custom.emoji = {}
 
-    instance.custom.emoji.put = function(id, options)
+    instance.custom.emoji.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.custom.emoji then
+        table.remove(__args, 1)
+      end
+      local id = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/custom/emoji/" .. id .. "",
@@ -1007,7 +1459,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.custom.emoji.get = function(emoji_id, options)
+    instance.custom.emoji.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.custom.emoji then
+        table.remove(__args, 1)
+      end
+      local emoji_id = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/custom/emoji/" .. emoji_id .. "",
@@ -1020,7 +1478,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.custom.emoji.delete = function(emoji_id, options)
+    instance.custom.emoji.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.custom.emoji then
+        table.remove(__args, 1)
+      end
+      local emoji_id = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/custom/emoji/" .. emoji_id .. "",
@@ -1035,7 +1499,12 @@ function StoatAPI:new(config)
     instance.safety = {}
     instance.safety.report = {}
 
-    instance.safety.report.post = function(options)
+    instance.safety.report.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.safety.report then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/safety/report",
@@ -1051,7 +1520,12 @@ function StoatAPI:new(config)
     instance.auth.account = {}
     instance.auth.account.create = {}
 
-    instance.auth.account.create.post = function(options)
+    instance.auth.account.create.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.account.create then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/account/create",
@@ -1065,7 +1539,12 @@ function StoatAPI:new(config)
     end
     instance.auth.account.reverify = {}
 
-    instance.auth.account.reverify.post = function(options)
+    instance.auth.account.reverify.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.account.reverify then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/account/reverify",
@@ -1079,7 +1558,12 @@ function StoatAPI:new(config)
     end
     instance.auth.account.delete = {}
 
-    instance.auth.account.delete.put = function(options)
+    instance.auth.account.delete.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.account.delete then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/account/delete",
@@ -1092,7 +1576,12 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.auth.account.delete.post = function(options)
+    instance.auth.account.delete.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.account.delete then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/account/delete",
@@ -1106,7 +1595,12 @@ function StoatAPI:new(config)
     end
     instance.auth.account.disable = {}
 
-    instance.auth.account.disable.post = function(options)
+    instance.auth.account.disable.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.account.disable then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/account/disable",
@@ -1121,7 +1615,12 @@ function StoatAPI:new(config)
     instance.auth.account.change = {}
     instance.auth.account.change.password = {}
 
-    instance.auth.account.change.password.patch = function(options)
+    instance.auth.account.change.password.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.account.change.password then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/account/change/password",
@@ -1135,7 +1634,12 @@ function StoatAPI:new(config)
     end
     instance.auth.account.change.email = {}
 
-    instance.auth.account.change.email.patch = function(options)
+    instance.auth.account.change.email.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.account.change.email then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/account/change/email",
@@ -1149,7 +1653,13 @@ function StoatAPI:new(config)
     end
     instance.auth.account.verify = {}
 
-    instance.auth.account.verify.post = function(code, options)
+    instance.auth.account.verify.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.account.verify then
+        table.remove(__args, 1)
+      end
+      local code = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/auth/account/verify/" .. code .. "",
@@ -1163,7 +1673,12 @@ function StoatAPI:new(config)
     end
     instance.auth.account.reset_password = {}
 
-    instance.auth.account.reset_password.post = function(options)
+    instance.auth.account.reset_password.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.account.reset_password then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/account/reset_password",
@@ -1176,7 +1691,12 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.auth.account.reset_password.patch = function(options)
+    instance.auth.account.reset_password.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.account.reset_password then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/account/reset_password",
@@ -1189,7 +1709,12 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.auth.account.get = function(options)
+    instance.auth.account.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.account then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/account/",
@@ -1204,7 +1729,12 @@ function StoatAPI:new(config)
     instance.auth.session = {}
     instance.auth.session.login = {}
 
-    instance.auth.session.login.post = function(options)
+    instance.auth.session.login.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.session.login then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/session/login",
@@ -1218,7 +1748,12 @@ function StoatAPI:new(config)
     end
     instance.auth.session.logout = {}
 
-    instance.auth.session.logout.post = function(options)
+    instance.auth.session.logout.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.session.logout then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/session/logout",
@@ -1232,7 +1767,12 @@ function StoatAPI:new(config)
     end
     instance.auth.session.all = {}
 
-    instance.auth.session.all.get = function(options)
+    instance.auth.session.all.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.session.all then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/session/all",
@@ -1245,7 +1785,12 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.auth.session.all.delete = function(options)
+    instance.auth.session.all.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.session.all then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/session/all",
@@ -1258,7 +1803,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.auth.session.delete = function(id, options)
+    instance.auth.session.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.session then
+        table.remove(__args, 1)
+      end
+      local id = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/auth/session/" .. id .. "",
@@ -1271,7 +1822,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.auth.session.patch = function(id, options)
+    instance.auth.session.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.session then
+        table.remove(__args, 1)
+      end
+      local id = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/auth/session/" .. id .. "",
@@ -1286,7 +1843,12 @@ function StoatAPI:new(config)
     instance.auth.mfa = {}
     instance.auth.mfa.ticket = {}
 
-    instance.auth.mfa.ticket.put = function(options)
+    instance.auth.mfa.ticket.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.mfa.ticket then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/mfa/ticket",
@@ -1300,7 +1862,12 @@ function StoatAPI:new(config)
     end
     instance.auth.mfa.recovery = {}
 
-    instance.auth.mfa.recovery.post = function(options)
+    instance.auth.mfa.recovery.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.mfa.recovery then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/mfa/recovery",
@@ -1313,7 +1880,12 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.auth.mfa.recovery.patch = function(options)
+    instance.auth.mfa.recovery.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.mfa.recovery then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/mfa/recovery",
@@ -1327,7 +1899,12 @@ function StoatAPI:new(config)
     end
     instance.auth.mfa.methods = {}
 
-    instance.auth.mfa.methods.get = function(options)
+    instance.auth.mfa.methods.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.mfa.methods then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/mfa/methods",
@@ -1341,7 +1918,12 @@ function StoatAPI:new(config)
     end
     instance.auth.mfa.totp = {}
 
-    instance.auth.mfa.totp.put = function(options)
+    instance.auth.mfa.totp.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.mfa.totp then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/mfa/totp",
@@ -1354,7 +1936,12 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.auth.mfa.totp.post = function(options)
+    instance.auth.mfa.totp.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.mfa.totp then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/mfa/totp",
@@ -1367,7 +1954,12 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.auth.mfa.totp.delete = function(options)
+    instance.auth.mfa.totp.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.mfa.totp then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/mfa/totp",
@@ -1380,7 +1972,12 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.auth.mfa.get = function(options)
+    instance.auth.mfa.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.auth.mfa then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/auth/mfa/",
@@ -1395,7 +1992,12 @@ function StoatAPI:new(config)
     instance.onboard = {}
     instance.onboard.hello = {}
 
-    instance.onboard.hello.get = function(options)
+    instance.onboard.hello.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.onboard.hello then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/onboard/hello",
@@ -1409,7 +2011,12 @@ function StoatAPI:new(config)
     end
     instance.onboard.complete = {}
 
-    instance.onboard.complete.post = function(options)
+    instance.onboard.complete.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.onboard.complete then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/onboard/complete",
@@ -1424,7 +2031,12 @@ function StoatAPI:new(config)
     instance.policy = {}
     instance.policy.acknowledge = {}
 
-    instance.policy.acknowledge.post = function(options)
+    instance.policy.acknowledge.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.policy.acknowledge then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/policy/acknowledge",
@@ -1439,7 +2051,12 @@ function StoatAPI:new(config)
     instance.push = {}
     instance.push.subscribe = {}
 
-    instance.push.subscribe.post = function(options)
+    instance.push.subscribe.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.push.subscribe then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/push/subscribe",
@@ -1453,7 +2070,12 @@ function StoatAPI:new(config)
     end
     instance.push.unsubscribe = {}
 
-    instance.push.unsubscribe.post = function(options)
+    instance.push.unsubscribe.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.push.unsubscribe then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/push/unsubscribe",
@@ -1469,7 +2091,12 @@ function StoatAPI:new(config)
     instance.sync.settings = {}
     instance.sync.settings.fetch = {}
 
-    instance.sync.settings.fetch.post = function(options)
+    instance.sync.settings.fetch.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.sync.settings.fetch then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/sync/settings/fetch",
@@ -1483,7 +2110,12 @@ function StoatAPI:new(config)
     end
     instance.sync.settings.set = {}
 
-    instance.sync.settings.set.post = function(options)
+    instance.sync.settings.set.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.sync.settings.set then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/sync/settings/set",
@@ -1497,7 +2129,12 @@ function StoatAPI:new(config)
     end
     instance.sync.unreads = {}
 
-    instance.sync.unreads.get = function(options)
+    instance.sync.unreads.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.sync.unreads then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/sync/unreads",
@@ -1512,7 +2149,14 @@ function StoatAPI:new(config)
     instance.webhooks = {}
     instance.webhooks.github = {}
 
-    instance.webhooks.github.post = function(webhook_id, token, options)
+    instance.webhooks.github.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.webhooks.github then
+        table.remove(__args, 1)
+      end
+      local webhook_id = __args[1]
+      local token = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/webhooks/" .. webhook_id .. "/" .. token .. "/github",
@@ -1525,7 +2169,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.webhooks.get = function(webhook_id, options)
+    instance.webhooks.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.webhooks then
+        table.remove(__args, 1)
+      end
+      local webhook_id = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/webhooks/" .. webhook_id .. "",
@@ -1538,7 +2188,14 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.webhooks.post = function(webhook_id, token, options)
+    instance.webhooks.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.webhooks then
+        table.remove(__args, 1)
+      end
+      local webhook_id = __args[1]
+      local token = __args[2]
+      local options = __args[3]
       options = options or {}
       return instance:_request {
         url = "/webhooks/" .. webhook_id .. "/" .. token .. "",
@@ -1551,7 +2208,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.webhooks.delete = function(webhook_id, options)
+    instance.webhooks.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.webhooks then
+        table.remove(__args, 1)
+      end
+      local webhook_id = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/webhooks/" .. webhook_id .. "",
@@ -1564,7 +2227,13 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.webhooks.patch = function(webhook_id, options)
+    instance.webhooks.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.webhooks then
+        table.remove(__args, 1)
+      end
+      local webhook_id = __args[1]
+      local options = __args[2]
       options = options or {}
       return instance:_request {
         url = "/webhooks/" .. webhook_id .. "",
@@ -1577,7 +2246,12 @@ function StoatAPI:new(config)
       }
     end
 
-    instance.get = function(options)
+    instance.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance then
+        table.remove(__args, 1)
+      end
+      local options = __args[1]
       options = options or {}
       return instance:_request {
         url = "/",
