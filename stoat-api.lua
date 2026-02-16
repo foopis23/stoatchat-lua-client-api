@@ -4,6 +4,7 @@ StoatAPI.__index = StoatAPI
 function StoatAPI:new(config)
   local instance = {
     baseUrl = config.baseUrl,
+    baseHeaders = config.baseHeaders or {},
     request = config.request
   }
 
@@ -15,7 +16,7 @@ function StoatAPI:new(config)
 
     instance.users["@me"].username.patch = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/@me/username",
         method = "PATCH",
         body = options.body,
@@ -28,7 +29,7 @@ function StoatAPI:new(config)
 
     instance.users["@me"].get = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/@me",
         method = "GET",
         body = options.body,
@@ -42,7 +43,7 @@ function StoatAPI:new(config)
 
     instance.users.flags.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/" .. target .. "/flags",
         method = "GET",
         body = options.body,
@@ -56,7 +57,7 @@ function StoatAPI:new(config)
 
     instance.users.default_avatar.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/" .. target .. "/default_avatar",
         method = "GET",
         body = options.body,
@@ -70,7 +71,7 @@ function StoatAPI:new(config)
 
     instance.users.profile.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/" .. target .. "/profile",
         method = "GET",
         body = options.body,
@@ -84,7 +85,7 @@ function StoatAPI:new(config)
 
     instance.users.dms.get = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/dms",
         method = "GET",
         body = options.body,
@@ -98,7 +99,7 @@ function StoatAPI:new(config)
 
     instance.users.dm.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/" .. target .. "/dm",
         method = "GET",
         body = options.body,
@@ -112,7 +113,7 @@ function StoatAPI:new(config)
 
     instance.users.mutual.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/" .. target .. "/mutual",
         method = "GET",
         body = options.body,
@@ -126,7 +127,7 @@ function StoatAPI:new(config)
 
     instance.users.friend.put = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/" .. target .. "/friend",
         method = "PUT",
         body = options.body,
@@ -139,7 +140,7 @@ function StoatAPI:new(config)
 
     instance.users.friend.delete = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/" .. target .. "/friend",
         method = "DELETE",
         body = options.body,
@@ -152,7 +153,7 @@ function StoatAPI:new(config)
 
     instance.users.friend.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/friend",
         method = "POST",
         body = options.body,
@@ -166,7 +167,7 @@ function StoatAPI:new(config)
 
     instance.users.block.put = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/" .. target .. "/block",
         method = "PUT",
         body = options.body,
@@ -179,7 +180,7 @@ function StoatAPI:new(config)
 
     instance.users.block.delete = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/" .. target .. "/block",
         method = "DELETE",
         body = options.body,
@@ -192,7 +193,7 @@ function StoatAPI:new(config)
 
     instance.users.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/" .. target .. "",
         method = "GET",
         body = options.body,
@@ -205,7 +206,7 @@ function StoatAPI:new(config)
 
     instance.users.patch = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/users/" .. target .. "",
         method = "PATCH",
         body = options.body,
@@ -220,7 +221,7 @@ function StoatAPI:new(config)
 
     instance.bots.create.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/bots/create",
         method = "POST",
         body = options.body,
@@ -234,7 +235,7 @@ function StoatAPI:new(config)
 
     instance.bots.invite.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/bots/" .. target .. "/invite",
         method = "GET",
         body = options.body,
@@ -247,7 +248,7 @@ function StoatAPI:new(config)
 
     instance.bots.invite.post = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/bots/" .. target .. "/invite",
         method = "POST",
         body = options.body,
@@ -261,7 +262,7 @@ function StoatAPI:new(config)
 
     instance.bots["@me"].get = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/bots/@me",
         method = "GET",
         body = options.body,
@@ -274,7 +275,7 @@ function StoatAPI:new(config)
 
     instance.bots.get = function(bot, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/bots/" .. bot .. "",
         method = "GET",
         body = options.body,
@@ -287,7 +288,7 @@ function StoatAPI:new(config)
 
     instance.bots.delete = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/bots/" .. target .. "",
         method = "DELETE",
         body = options.body,
@@ -300,7 +301,7 @@ function StoatAPI:new(config)
 
     instance.bots.patch = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/bots/" .. target .. "",
         method = "PATCH",
         body = options.body,
@@ -315,7 +316,7 @@ function StoatAPI:new(config)
 
     instance.channels.ack.put = function(target, message, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/ack/" .. message .. "",
         method = "PUT",
         body = options.body,
@@ -329,7 +330,7 @@ function StoatAPI:new(config)
 
     instance.channels.members.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/members",
         method = "GET",
         body = options.body,
@@ -343,7 +344,7 @@ function StoatAPI:new(config)
 
     instance.channels.invites.post = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/invites",
         method = "POST",
         body = options.body,
@@ -358,7 +359,7 @@ function StoatAPI:new(config)
 
     instance.channels.messages.pin.post = function(target, msg, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "/pin",
         method = "POST",
         body = options.body,
@@ -371,7 +372,7 @@ function StoatAPI:new(config)
 
     instance.channels.messages.pin.delete = function(target, msg, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "/pin",
         method = "DELETE",
         body = options.body,
@@ -385,7 +386,7 @@ function StoatAPI:new(config)
 
     instance.channels.messages.bulk.delete = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/messages/bulk",
         method = "DELETE",
         body = options.body,
@@ -399,7 +400,7 @@ function StoatAPI:new(config)
 
     instance.channels.messages.reactions.put = function(target, msg, emoji, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "/reactions/" .. emoji .. "",
         method = "PUT",
         body = options.body,
@@ -412,7 +413,7 @@ function StoatAPI:new(config)
 
     instance.channels.messages.reactions.delete = function(target, msg, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "/reactions",
         method = "DELETE",
         body = options.body,
@@ -425,7 +426,7 @@ function StoatAPI:new(config)
 
     instance.channels.messages.get = function(target, msg, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "",
         method = "GET",
         body = options.body,
@@ -438,7 +439,7 @@ function StoatAPI:new(config)
 
     instance.channels.messages.post = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/messages",
         method = "POST",
         body = options.body,
@@ -451,7 +452,7 @@ function StoatAPI:new(config)
 
     instance.channels.messages.delete = function(target, msg, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "",
         method = "DELETE",
         body = options.body,
@@ -464,7 +465,7 @@ function StoatAPI:new(config)
 
     instance.channels.messages.patch = function(target, msg, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/messages/" .. msg .. "",
         method = "PATCH",
         body = options.body,
@@ -478,7 +479,7 @@ function StoatAPI:new(config)
 
     instance.channels.search.post = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/search",
         method = "POST",
         body = options.body,
@@ -492,7 +493,7 @@ function StoatAPI:new(config)
 
     instance.channels.create.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/create",
         method = "POST",
         body = options.body,
@@ -506,7 +507,7 @@ function StoatAPI:new(config)
 
     instance.channels.recipients.put = function(group_id, member_id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. group_id .. "/recipients/" .. member_id .. "",
         method = "PUT",
         body = options.body,
@@ -519,7 +520,7 @@ function StoatAPI:new(config)
 
     instance.channels.recipients.delete = function(target, member, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/recipients/" .. member .. "",
         method = "DELETE",
         body = options.body,
@@ -533,7 +534,7 @@ function StoatAPI:new(config)
 
     instance.channels.join_call.post = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/join_call",
         method = "POST",
         body = options.body,
@@ -547,7 +548,7 @@ function StoatAPI:new(config)
 
     instance.channels.end_ring.put = function(target, target_user, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/end_ring/" .. target_user .. "",
         method = "PUT",
         body = options.body,
@@ -562,7 +563,7 @@ function StoatAPI:new(config)
 
     instance.channels.permissions.default.put = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/permissions/default",
         method = "PUT",
         body = options.body,
@@ -575,7 +576,7 @@ function StoatAPI:new(config)
 
     instance.channels.permissions.put = function(target, role_id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/permissions/" .. role_id .. "",
         method = "PUT",
         body = options.body,
@@ -589,7 +590,7 @@ function StoatAPI:new(config)
 
     instance.channels.webhooks.post = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "/webhooks",
         method = "POST",
         body = options.body,
@@ -602,7 +603,7 @@ function StoatAPI:new(config)
 
     instance.channels.webhooks.get = function(channel_id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. channel_id .. "/webhooks",
         method = "GET",
         body = options.body,
@@ -615,7 +616,7 @@ function StoatAPI:new(config)
 
     instance.channels.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "",
         method = "GET",
         body = options.body,
@@ -628,7 +629,7 @@ function StoatAPI:new(config)
 
     instance.channels.delete = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "",
         method = "DELETE",
         body = options.body,
@@ -641,7 +642,7 @@ function StoatAPI:new(config)
 
     instance.channels.patch = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/channels/" .. target .. "",
         method = "PATCH",
         body = options.body,
@@ -656,7 +657,7 @@ function StoatAPI:new(config)
 
     instance.servers.create.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/create",
         method = "POST",
         body = options.body,
@@ -670,7 +671,7 @@ function StoatAPI:new(config)
 
     instance.servers.ack.put = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/ack",
         method = "PUT",
         body = options.body,
@@ -684,7 +685,7 @@ function StoatAPI:new(config)
 
     instance.servers.channels.post = function(server, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. server .. "/channels",
         method = "POST",
         body = options.body,
@@ -698,7 +699,7 @@ function StoatAPI:new(config)
 
     instance.servers.members.get = function(target, member, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/members/" .. member .. "",
         method = "GET",
         body = options.body,
@@ -711,7 +712,7 @@ function StoatAPI:new(config)
 
     instance.servers.members.delete = function(target, member, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/members/" .. member .. "",
         method = "DELETE",
         body = options.body,
@@ -724,7 +725,7 @@ function StoatAPI:new(config)
 
     instance.servers.members.patch = function(server, member, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. server .. "/members/" .. member .. "",
         method = "PATCH",
         body = options.body,
@@ -738,7 +739,7 @@ function StoatAPI:new(config)
 
     instance.servers.members_experimental_query.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/members_experimental_query",
         method = "GET",
         body = options.body,
@@ -752,7 +753,7 @@ function StoatAPI:new(config)
 
     instance.servers.bans.put = function(server, target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. server .. "/bans/" .. target .. "",
         method = "PUT",
         body = options.body,
@@ -765,7 +766,7 @@ function StoatAPI:new(config)
 
     instance.servers.bans.delete = function(server, target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. server .. "/bans/" .. target .. "",
         method = "DELETE",
         body = options.body,
@@ -778,7 +779,7 @@ function StoatAPI:new(config)
 
     instance.servers.bans.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/bans",
         method = "GET",
         body = options.body,
@@ -792,7 +793,7 @@ function StoatAPI:new(config)
 
     instance.servers.invites.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/invites",
         method = "GET",
         body = options.body,
@@ -807,7 +808,7 @@ function StoatAPI:new(config)
 
     instance.servers.roles.ranks.patch = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/roles/ranks",
         method = "PATCH",
         body = options.body,
@@ -820,7 +821,7 @@ function StoatAPI:new(config)
 
     instance.servers.roles.post = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/roles",
         method = "POST",
         body = options.body,
@@ -833,7 +834,7 @@ function StoatAPI:new(config)
 
     instance.servers.roles.get = function(target, role_id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/roles/" .. role_id .. "",
         method = "GET",
         body = options.body,
@@ -846,7 +847,7 @@ function StoatAPI:new(config)
 
     instance.servers.roles.delete = function(target, role_id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/roles/" .. role_id .. "",
         method = "DELETE",
         body = options.body,
@@ -859,7 +860,7 @@ function StoatAPI:new(config)
 
     instance.servers.roles.patch = function(target, role_id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/roles/" .. role_id .. "",
         method = "PATCH",
         body = options.body,
@@ -874,7 +875,7 @@ function StoatAPI:new(config)
 
     instance.servers.permissions.default.put = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/permissions/default",
         method = "PUT",
         body = options.body,
@@ -887,7 +888,7 @@ function StoatAPI:new(config)
 
     instance.servers.permissions.put = function(target, role_id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/permissions/" .. role_id .. "",
         method = "PUT",
         body = options.body,
@@ -901,7 +902,7 @@ function StoatAPI:new(config)
 
     instance.servers.emojis.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "/emojis",
         method = "GET",
         body = options.body,
@@ -914,7 +915,7 @@ function StoatAPI:new(config)
 
     instance.servers.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "",
         method = "GET",
         body = options.body,
@@ -927,7 +928,7 @@ function StoatAPI:new(config)
 
     instance.servers.delete = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "",
         method = "DELETE",
         body = options.body,
@@ -940,7 +941,7 @@ function StoatAPI:new(config)
 
     instance.servers.patch = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/servers/" .. target .. "",
         method = "PATCH",
         body = options.body,
@@ -954,7 +955,7 @@ function StoatAPI:new(config)
 
     instance.invites.get = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/invites/" .. target .. "",
         method = "GET",
         body = options.body,
@@ -967,7 +968,7 @@ function StoatAPI:new(config)
 
     instance.invites.post = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/invites/" .. target .. "",
         method = "POST",
         body = options.body,
@@ -980,7 +981,7 @@ function StoatAPI:new(config)
 
     instance.invites.delete = function(target, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/invites/" .. target .. "",
         method = "DELETE",
         body = options.body,
@@ -995,7 +996,7 @@ function StoatAPI:new(config)
 
     instance.custom.emoji.put = function(id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/custom/emoji/" .. id .. "",
         method = "PUT",
         body = options.body,
@@ -1008,7 +1009,7 @@ function StoatAPI:new(config)
 
     instance.custom.emoji.get = function(emoji_id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/custom/emoji/" .. emoji_id .. "",
         method = "GET",
         body = options.body,
@@ -1021,7 +1022,7 @@ function StoatAPI:new(config)
 
     instance.custom.emoji.delete = function(emoji_id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/custom/emoji/" .. emoji_id .. "",
         method = "DELETE",
         body = options.body,
@@ -1036,7 +1037,7 @@ function StoatAPI:new(config)
 
     instance.safety.report.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/safety/report",
         method = "POST",
         body = options.body,
@@ -1052,7 +1053,7 @@ function StoatAPI:new(config)
 
     instance.auth.account.create.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/account/create",
         method = "POST",
         body = options.body,
@@ -1066,7 +1067,7 @@ function StoatAPI:new(config)
 
     instance.auth.account.reverify.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/account/reverify",
         method = "POST",
         body = options.body,
@@ -1080,7 +1081,7 @@ function StoatAPI:new(config)
 
     instance.auth.account.delete.put = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/account/delete",
         method = "PUT",
         body = options.body,
@@ -1093,7 +1094,7 @@ function StoatAPI:new(config)
 
     instance.auth.account.delete.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/account/delete",
         method = "POST",
         body = options.body,
@@ -1107,7 +1108,7 @@ function StoatAPI:new(config)
 
     instance.auth.account.disable.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/account/disable",
         method = "POST",
         body = options.body,
@@ -1122,7 +1123,7 @@ function StoatAPI:new(config)
 
     instance.auth.account.change.password.patch = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/account/change/password",
         method = "PATCH",
         body = options.body,
@@ -1136,7 +1137,7 @@ function StoatAPI:new(config)
 
     instance.auth.account.change.email.patch = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/account/change/email",
         method = "PATCH",
         body = options.body,
@@ -1150,7 +1151,7 @@ function StoatAPI:new(config)
 
     instance.auth.account.verify.post = function(code, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/account/verify/" .. code .. "",
         method = "POST",
         body = options.body,
@@ -1164,7 +1165,7 @@ function StoatAPI:new(config)
 
     instance.auth.account.reset_password.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/account/reset_password",
         method = "POST",
         body = options.body,
@@ -1177,7 +1178,7 @@ function StoatAPI:new(config)
 
     instance.auth.account.reset_password.patch = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/account/reset_password",
         method = "PATCH",
         body = options.body,
@@ -1190,7 +1191,7 @@ function StoatAPI:new(config)
 
     instance.auth.account.get = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/account/",
         method = "GET",
         body = options.body,
@@ -1205,7 +1206,7 @@ function StoatAPI:new(config)
 
     instance.auth.session.login.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/session/login",
         method = "POST",
         body = options.body,
@@ -1219,7 +1220,7 @@ function StoatAPI:new(config)
 
     instance.auth.session.logout.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/session/logout",
         method = "POST",
         body = options.body,
@@ -1233,7 +1234,7 @@ function StoatAPI:new(config)
 
     instance.auth.session.all.get = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/session/all",
         method = "GET",
         body = options.body,
@@ -1246,7 +1247,7 @@ function StoatAPI:new(config)
 
     instance.auth.session.all.delete = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/session/all",
         method = "DELETE",
         body = options.body,
@@ -1259,7 +1260,7 @@ function StoatAPI:new(config)
 
     instance.auth.session.delete = function(id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/session/" .. id .. "",
         method = "DELETE",
         body = options.body,
@@ -1272,7 +1273,7 @@ function StoatAPI:new(config)
 
     instance.auth.session.patch = function(id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/session/" .. id .. "",
         method = "PATCH",
         body = options.body,
@@ -1287,7 +1288,7 @@ function StoatAPI:new(config)
 
     instance.auth.mfa.ticket.put = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/mfa/ticket",
         method = "PUT",
         body = options.body,
@@ -1301,7 +1302,7 @@ function StoatAPI:new(config)
 
     instance.auth.mfa.recovery.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/mfa/recovery",
         method = "POST",
         body = options.body,
@@ -1314,7 +1315,7 @@ function StoatAPI:new(config)
 
     instance.auth.mfa.recovery.patch = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/mfa/recovery",
         method = "PATCH",
         body = options.body,
@@ -1328,7 +1329,7 @@ function StoatAPI:new(config)
 
     instance.auth.mfa.methods.get = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/mfa/methods",
         method = "GET",
         body = options.body,
@@ -1342,7 +1343,7 @@ function StoatAPI:new(config)
 
     instance.auth.mfa.totp.put = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/mfa/totp",
         method = "PUT",
         body = options.body,
@@ -1355,7 +1356,7 @@ function StoatAPI:new(config)
 
     instance.auth.mfa.totp.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/mfa/totp",
         method = "POST",
         body = options.body,
@@ -1368,7 +1369,7 @@ function StoatAPI:new(config)
 
     instance.auth.mfa.totp.delete = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/mfa/totp",
         method = "DELETE",
         body = options.body,
@@ -1381,7 +1382,7 @@ function StoatAPI:new(config)
 
     instance.auth.mfa.get = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/auth/mfa/",
         method = "GET",
         body = options.body,
@@ -1396,7 +1397,7 @@ function StoatAPI:new(config)
 
     instance.onboard.hello.get = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/onboard/hello",
         method = "GET",
         body = options.body,
@@ -1410,7 +1411,7 @@ function StoatAPI:new(config)
 
     instance.onboard.complete.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/onboard/complete",
         method = "POST",
         body = options.body,
@@ -1425,7 +1426,7 @@ function StoatAPI:new(config)
 
     instance.policy.acknowledge.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/policy/acknowledge",
         method = "POST",
         body = options.body,
@@ -1440,7 +1441,7 @@ function StoatAPI:new(config)
 
     instance.push.subscribe.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/push/subscribe",
         method = "POST",
         body = options.body,
@@ -1454,7 +1455,7 @@ function StoatAPI:new(config)
 
     instance.push.unsubscribe.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/push/unsubscribe",
         method = "POST",
         body = options.body,
@@ -1470,7 +1471,7 @@ function StoatAPI:new(config)
 
     instance.sync.settings.fetch.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/sync/settings/fetch",
         method = "POST",
         body = options.body,
@@ -1484,7 +1485,7 @@ function StoatAPI:new(config)
 
     instance.sync.settings.set.post = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/sync/settings/set",
         method = "POST",
         body = options.body,
@@ -1498,7 +1499,7 @@ function StoatAPI:new(config)
 
     instance.sync.unreads.get = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/sync/unreads",
         method = "GET",
         body = options.body,
@@ -1513,7 +1514,7 @@ function StoatAPI:new(config)
 
     instance.webhooks.github.post = function(webhook_id, token, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/webhooks/" .. webhook_id .. "/" .. token .. "/github",
         method = "POST",
         body = options.body,
@@ -1526,7 +1527,7 @@ function StoatAPI:new(config)
 
     instance.webhooks.get = function(webhook_id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/webhooks/" .. webhook_id .. "",
         method = "GET",
         body = options.body,
@@ -1539,7 +1540,7 @@ function StoatAPI:new(config)
 
     instance.webhooks.post = function(webhook_id, token, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/webhooks/" .. webhook_id .. "/" .. token .. "",
         method = "POST",
         body = options.body,
@@ -1552,7 +1553,7 @@ function StoatAPI:new(config)
 
     instance.webhooks.delete = function(webhook_id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/webhooks/" .. webhook_id .. "",
         method = "DELETE",
         body = options.body,
@@ -1565,7 +1566,7 @@ function StoatAPI:new(config)
 
     instance.webhooks.patch = function(webhook_id, options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/webhooks/" .. webhook_id .. "",
         method = "PATCH",
         body = options.body,
@@ -1578,7 +1579,7 @@ function StoatAPI:new(config)
 
     instance.get = function(options)
       options = options or {}
-      return self:_request {
+      return instance:_request {
         url = "/",
         method = "GET",
         body = options.body,
@@ -1592,13 +1593,38 @@ function StoatAPI:new(config)
   return instance
 end
 
+function StoatAPI:setBaseHeaders(headers)
+  self.baseHeaders = headers or {}
+end
+
+function StoatAPI:setBaseHeader(name, value)
+  if not self.baseHeaders then self.baseHeaders = {} end
+  self.baseHeaders[name] = value
+end
+
+function StoatAPI:removeBaseHeader(name)
+  if not self.baseHeaders then return end
+  self.baseHeaders[name] = nil
+end
+
 function StoatAPI:_request(options)
   options = options or {}
+
+  local headers = nil
+  if self.baseHeaders ~= nil or options.headers ~= nil then
+    headers = {}
+    for k, v in pairs(self.baseHeaders or {}) do
+      headers[k] = v
+    end
+    for k, v in pairs(options.headers or {}) do
+      headers[k] = v
+    end
+  end
 
   return self.request {
     url = self.baseUrl .. options.url,
     body = options.body,
-    headers = options.headers,
+    headers = headers,
     binary = options.binary,
     method = options.method,
     redirect = options.redirect,
