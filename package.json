@@ -1,0 +1,16 @@
+{
+  "name": "stoatchat-lua-client-api",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "fetch": "curl -O https://api.revolt.chat/openapi.json",
+    "generate": "openapi-2-lua --spec openapi.json --out ./lib/stoat-api.lua --name StoatAPI"
+  },
+  "devDependencies": {
+    "openapi-2-lua": "^0.0.1"
+  }
+}

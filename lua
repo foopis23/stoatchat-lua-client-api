@@ -1,0 +1,3 @@
+#!/bin/sh
+
+LUAROCKS_SYSCONFDIR='/opt/homebrew/etc/luarocks' exec '/opt/homebrew/opt/lua/bin/lua5.4' -e 'package.path="/Users/eric/dev/stoatchat-lua-client-api/lua_modules/share/lua/5.4/?.lua;/Users/eric/dev/stoatchat-lua-client-api/lua_modules/share/lua/5.4/?/init.lua;/Users/eric/.luarocks/share/lua/5.4/?.lua;/Users/eric/.luarocks/share/lua/5.4/?/init.lua;/opt/homebrew/share/lua/5.4/?.lua;/opt/homebrew/share/lua/5.4/?/init.lua;"..package.path;package.cpath="/Users/eric/dev/stoatchat-lua-client-api/lua_modules/lib/lua/5.4/?.so;/Users/eric/.luarocks/lib/lua/5.4/?.so;/opt/homebrew/lib/lua/5.4/?.so;"..package.cpath' $([ "$*" ] || echo -i) "$@"
