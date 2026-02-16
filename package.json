@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "fetch": "curl -O https://api.revolt.chat/openapi.json",
-    "generate": "openapi-2-lua --spec openapi.json --out ./lib/stoat-api.lua --name StoatAPI"
+    "generate": "openapi-2-lua --spec openapi.json --out ./stoat-api.lua --name StoatAPI"
   },
   "devDependencies": {
     "openapi-2-lua": "^0.0.1"
