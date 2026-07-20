@@ -405,11 +405,11 @@ function StoatAPI:new(config)
       if __args[1] == instance.bots then
         table.remove(__args, 1)
       end
-      local bot = __args[1]
+      local bot_id = __args[1]
       local options = __args[2]
       options = options or {}
       return instance:_request {
-        url = "/bots/" .. bot .. "",
+        url = "/bots/" .. bot_id .. "",
         method = "GET",
         body = options.body,
         query = options.query,
@@ -425,11 +425,11 @@ function StoatAPI:new(config)
       if __args[1] == instance.bots then
         table.remove(__args, 1)
       end
-      local target = __args[1]
+      local bot_id = __args[1]
       local options = __args[2]
       options = options or {}
       return instance:_request {
-        url = "/bots/" .. target .. "",
+        url = "/bots/" .. bot_id .. "",
         method = "DELETE",
         body = options.body,
         query = options.query,
@@ -445,11 +445,11 @@ function StoatAPI:new(config)
       if __args[1] == instance.bots then
         table.remove(__args, 1)
       end
-      local target = __args[1]
+      local bot_id = __args[1]
       local options = __args[2]
       options = options or {}
       return instance:_request {
-        url = "/bots/" .. target .. "",
+        url = "/bots/" .. bot_id .. "",
         method = "PATCH",
         body = options.body,
         query = options.query,
@@ -785,12 +785,12 @@ function StoatAPI:new(config)
       if __args[1] == instance.channels.recipients then
         table.remove(__args, 1)
       end
-      local target = __args[1]
-      local member = __args[2]
+      local group_id = __args[1]
+      local member_id = __args[2]
       local options = __args[3]
       options = options or {}
       return instance:_request {
-        url = "/channels/" .. target .. "/recipients/" .. member .. "",
+        url = "/channels/" .. group_id .. "/recipients/" .. member_id .. "",
         method = "DELETE",
         body = options.body,
         query = options.query,
@@ -888,26 +888,6 @@ function StoatAPI:new(config)
     end
     instance.channels.webhooks = {}
 
-    instance.channels.webhooks.post = function(...)
-      local __args = { ... }
-      if __args[1] == instance.channels.webhooks then
-        table.remove(__args, 1)
-      end
-      local target = __args[1]
-      local options = __args[2]
-      options = options or {}
-      return instance:_request {
-        url = "/channels/" .. target .. "/webhooks",
-        method = "POST",
-        body = options.body,
-        query = options.query,
-        headers = options.headers,
-        binary = options.binary,
-        redirect = options.redirect,
-        timeout = options.timeout
-      }
-    end
-
     instance.channels.webhooks.get = function(...)
       local __args = { ... }
       if __args[1] == instance.channels.webhooks then
@@ -919,6 +899,26 @@ function StoatAPI:new(config)
       return instance:_request {
         url = "/channels/" .. channel_id .. "/webhooks",
         method = "GET",
+        body = options.body,
+        query = options.query,
+        headers = options.headers,
+        binary = options.binary,
+        redirect = options.redirect,
+        timeout = options.timeout
+      }
+    end
+
+    instance.channels.webhooks.post = function(...)
+      local __args = { ... }
+      if __args[1] == instance.channels.webhooks then
+        table.remove(__args, 1)
+      end
+      local channel_id = __args[1]
+      local options = __args[2]
+      options = options or {}
+      return instance:_request {
+        url = "/channels/" .. channel_id .. "/webhooks",
+        method = "POST",
         body = options.body,
         query = options.query,
         headers = options.headers,
@@ -1057,12 +1057,12 @@ function StoatAPI:new(config)
       if __args[1] == instance.servers.members then
         table.remove(__args, 1)
       end
-      local target = __args[1]
-      local member = __args[2]
+      local server_id = __args[1]
+      local member_id = __args[2]
       local options = __args[3]
       options = options or {}
       return instance:_request {
-        url = "/servers/" .. target .. "/members/" .. member .. "",
+        url = "/servers/" .. server_id .. "/members/" .. member_id .. "",
         method = "GET",
         body = options.body,
         query = options.query,
@@ -1078,12 +1078,12 @@ function StoatAPI:new(config)
       if __args[1] == instance.servers.members then
         table.remove(__args, 1)
       end
-      local target = __args[1]
-      local member = __args[2]
+      local server_id = __args[1]
+      local member_id = __args[2]
       local options = __args[3]
       options = options or {}
       return instance:_request {
-        url = "/servers/" .. target .. "/members/" .. member .. "",
+        url = "/servers/" .. server_id .. "/members/" .. member_id .. "",
         method = "DELETE",
         body = options.body,
         query = options.query,
@@ -1099,12 +1099,12 @@ function StoatAPI:new(config)
       if __args[1] == instance.servers.members then
         table.remove(__args, 1)
       end
-      local server = __args[1]
-      local member = __args[2]
+      local server_id = __args[1]
+      local member_id = __args[2]
       local options = __args[3]
       options = options or {}
       return instance:_request {
-        url = "/servers/" .. server .. "/members/" .. member .. "",
+        url = "/servers/" .. server_id .. "/members/" .. member_id .. "",
         method = "PATCH",
         body = options.body,
         query = options.query,
@@ -1388,6 +1388,27 @@ function StoatAPI:new(config)
         timeout = options.timeout
       }
     end
+    instance.servers.audit_logs = {}
+
+    instance.servers.audit_logs.get = function(...)
+      local __args = { ... }
+      if __args[1] == instance.servers.audit_logs then
+        table.remove(__args, 1)
+      end
+      local target = __args[1]
+      local options = __args[2]
+      options = options or {}
+      return instance:_request {
+        url = "/servers/" .. target .. "/audit_logs",
+        method = "GET",
+        body = options.body,
+        query = options.query,
+        headers = options.headers,
+        binary = options.binary,
+        redirect = options.redirect,
+        timeout = options.timeout
+      }
+    end
 
     instance.servers.get = function(...)
       local __args = { ... }
@@ -1512,26 +1533,6 @@ function StoatAPI:new(config)
     instance.custom = {}
     instance.custom.emoji = {}
 
-    instance.custom.emoji.put = function(...)
-      local __args = { ... }
-      if __args[1] == instance.custom.emoji then
-        table.remove(__args, 1)
-      end
-      local id = __args[1]
-      local options = __args[2]
-      options = options or {}
-      return instance:_request {
-        url = "/custom/emoji/" .. id .. "",
-        method = "PUT",
-        body = options.body,
-        query = options.query,
-        headers = options.headers,
-        binary = options.binary,
-        redirect = options.redirect,
-        timeout = options.timeout
-      }
-    end
-
     instance.custom.emoji.get = function(...)
       local __args = { ... }
       if __args[1] == instance.custom.emoji then
@@ -1552,6 +1553,26 @@ function StoatAPI:new(config)
       }
     end
 
+    instance.custom.emoji.put = function(...)
+      local __args = { ... }
+      if __args[1] == instance.custom.emoji then
+        table.remove(__args, 1)
+      end
+      local emoji_id = __args[1]
+      local options = __args[2]
+      options = options or {}
+      return instance:_request {
+        url = "/custom/emoji/" .. emoji_id .. "",
+        method = "PUT",
+        body = options.body,
+        query = options.query,
+        headers = options.headers,
+        binary = options.binary,
+        redirect = options.redirect,
+        timeout = options.timeout
+      }
+    end
+
     instance.custom.emoji.delete = function(...)
       local __args = { ... }
       if __args[1] == instance.custom.emoji then
@@ -1563,6 +1584,26 @@ function StoatAPI:new(config)
       return instance:_request {
         url = "/custom/emoji/" .. emoji_id .. "",
         method = "DELETE",
+        body = options.body,
+        query = options.query,
+        headers = options.headers,
+        binary = options.binary,
+        redirect = options.redirect,
+        timeout = options.timeout
+      }
+    end
+
+    instance.custom.emoji.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.custom.emoji then
+        table.remove(__args, 1)
+      end
+      local emoji_id = __args[1]
+      local options = __args[2]
+      options = options or {}
+      return instance:_request {
+        url = "/custom/emoji/" .. emoji_id .. "",
+        method = "PATCH",
         body = options.body,
         query = options.query,
         headers = options.headers,
@@ -2279,6 +2320,46 @@ function StoatAPI:new(config)
       }
     end
 
+    instance.webhooks.delete = function(...)
+      local __args = { ... }
+      if __args[1] == instance.webhooks then
+        table.remove(__args, 1)
+      end
+      local webhook_id = __args[1]
+      local options = __args[2]
+      options = options or {}
+      return instance:_request {
+        url = "/webhooks/" .. webhook_id .. "",
+        method = "DELETE",
+        body = options.body,
+        query = options.query,
+        headers = options.headers,
+        binary = options.binary,
+        redirect = options.redirect,
+        timeout = options.timeout
+      }
+    end
+
+    instance.webhooks.patch = function(...)
+      local __args = { ... }
+      if __args[1] == instance.webhooks then
+        table.remove(__args, 1)
+      end
+      local webhook_id = __args[1]
+      local options = __args[2]
+      options = options or {}
+      return instance:_request {
+        url = "/webhooks/" .. webhook_id .. "",
+        method = "PATCH",
+        body = options.body,
+        query = options.query,
+        headers = options.headers,
+        binary = options.binary,
+        redirect = options.redirect,
+        timeout = options.timeout
+      }
+    end
+
     instance.webhooks.get = function(...)
       local __args = { ... }
       if __args[1] == instance.webhooks then
@@ -2311,46 +2392,6 @@ function StoatAPI:new(config)
       return instance:_request {
         url = "/webhooks/" .. webhook_id .. "/" .. token .. "",
         method = "POST",
-        body = options.body,
-        query = options.query,
-        headers = options.headers,
-        binary = options.binary,
-        redirect = options.redirect,
-        timeout = options.timeout
-      }
-    end
-
-    instance.webhooks.delete = function(...)
-      local __args = { ... }
-      if __args[1] == instance.webhooks then
-        table.remove(__args, 1)
-      end
-      local webhook_id = __args[1]
-      local options = __args[2]
-      options = options or {}
-      return instance:_request {
-        url = "/webhooks/" .. webhook_id .. "",
-        method = "DELETE",
-        body = options.body,
-        query = options.query,
-        headers = options.headers,
-        binary = options.binary,
-        redirect = options.redirect,
-        timeout = options.timeout
-      }
-    end
-
-    instance.webhooks.patch = function(...)
-      local __args = { ... }
-      if __args[1] == instance.webhooks then
-        table.remove(__args, 1)
-      end
-      local webhook_id = __args[1]
-      local options = __args[2]
-      options = options or {}
-      return instance:_request {
-        url = "/webhooks/" .. webhook_id .. "",
-        method = "PATCH",
         body = options.body,
         query = options.query,
         headers = options.headers,
